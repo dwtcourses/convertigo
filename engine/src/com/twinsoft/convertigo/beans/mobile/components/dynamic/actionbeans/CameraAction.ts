@@ -1,11 +1,4 @@
-    /**
-     * Function CameraAction
-     *   
-     * @param page  , the current page
-     * @param props , the object which holds properties key-value pairs
-     * @param vars  , the object which holds variables key-value pairs
-     */
-    CameraAction(page: C8oPageBase, props, vars) : Promise<any> {
+CameraAction(page: C8oPageBase, props, vars) : Promise<any> {
         const svgClose = '<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368" /></svg>';
         const svgOpenFolder = "<svg width='25px' xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path d='M64 192v-72a40 40 0 0140-40h75.89a40 40 0 0122.19 6.72l27.84 18.56a40 40 0 0022.19 6.72H408a40 40 0 0140 40v40' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/><path d='M479.9 226.55L463.68 392a40 40 0 01-39.93 40H88.25a40 40 0 01-39.93-40L32.1 226.55A32 32 0 0164 192h384.1a32 32 0 0131.8 34.55z' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/></svg>";
         const svgCheckmark = "<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M416 128L192 384l-96-96'/></svg>";
@@ -16,7 +9,7 @@
         const svgFlashOff = "<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path fill='white' d='M432 448a15.92 15.92 0 01-11.31-4.69l-352-352a16 16 0 0122.62-22.62l352 352A16 16 0 01432 448zM294.34 84.28l-22.08 120.84a16 16 0 006.17 15.71 16.49 16.49 0 009.93 3.17h94.12l-38.37 47.42a4 4 0 00.28 5.34l17.07 17.07a4 4 0 005.94-.31l60.8-75.16a16.37 16.37 0 003.3-14.36 16 16 0 00-15.5-12H307.19L335.4 37.63c.05-.3.1-.59.13-.89A18.45 18.45 0 00302.73 23l-92.58 114.46a4 4 0 00.28 5.35l17.07 17.06a4 4 0 005.94-.31zM217.78 427.57l22-120.71a16 16 0 00-6.19-15.7 16.54 16.54 0 00-9.92-3.16h-94.1l38.36-47.42a4 4 0 00-.28-5.34l-17.07-17.07a4 4 0 00-5.93.31L83.8 293.64A16.37 16.37 0 0080.5 308 16 16 0 0096 320h108.83l-28.09 154.36v.11a18.37 18.37 0 0032.5 14.53l92.61-114.46a4 4 0 00-.28-5.35l-17.07-17.06a4 4 0 00-5.94.31z'/></svg>"
         var HIGHEST_POSSIBLE_Z_INDEX = '2147483647';
         var flashMode = false;
-        var isABoringBrowser = /constructor/i.test(window.HTMLElement) || (function (p) { return p.toString() === "[object SafariRemoteNotification]"; })(!window['safari'] || (typeof safari !== 'undefined' && window['safari'].pushNotification));
+        var isABoringBrowser = navigator.vendor && navigator.vendor.indexOf('Apple') > -1 && navigator.userAgent && navigator.userAgent.indexOf('CriOS') == -1 && navigator.userAgent.indexOf('FxiOS') == -1;
         var btLeft, btMiddle, btRight, btSet, parent, facingMode, btUpright, btSetUp;
         var merge = (d, s) => {
             var k, v;
@@ -300,7 +293,7 @@
                 if(!isABoringBrowser){
                     const track = stream.getVideoTracks()[0];
                     try{
-                        var imageCapture = new ImageCapture(track);
+                        var imageCapture = new window["ImageCapture"](track);
 
                         imageCapture.getPhotoCapabilities()
                         .then(photoCapabilities => {
@@ -535,3 +528,5 @@
             );
         });
     }
+
+}

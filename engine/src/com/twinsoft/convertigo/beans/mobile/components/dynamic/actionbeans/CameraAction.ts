@@ -1,4 +1,11 @@
-CameraAction(page: C8oPageBase, props, vars) : Promise<any> {
+    /**
+     * Function CameraAction
+     *   
+     * @param page  , the current page
+     * @param props , the object which holds properties key-value pairs
+     * @param vars  , the object which holds variables key-value pairs
+     */
+    CameraAction(page: C8oPageBase, props, vars) : Promise<any> {
         const svgClose = '<svg xmlns="http://www.w3.org/2000/svg" class="ionicon" viewBox="0 0 512 512"><path fill="none" stroke="white" stroke-linecap="round" stroke-linejoin="round" stroke-width="32" d="M368 368L144 144M368 144L144 368" /></svg>';
         const svgOpenFolder = "<svg width='25px' xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path d='M64 192v-72a40 40 0 0140-40h75.89a40 40 0 0122.19 6.72l27.84 18.56a40 40 0 0022.19 6.72H408a40 40 0 0140 40v40' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/><path d='M479.9 226.55L463.68 392a40 40 0 01-39.93 40H88.25a40 40 0 01-39.93-40L32.1 226.55A32 32 0 0164 192h384.1a32 32 0 0131.8 34.55z' fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='32'/></svg>";
         const svgCheckmark = "<svg xmlns='http://www.w3.org/2000/svg' class='ionicon' viewBox='0 0 512 512'><path fill='none' stroke='white' stroke-linecap='round' stroke-linejoin='round' stroke-width='32' d='M416 128L192 384l-96-96'/></svg>";
@@ -528,5 +535,3 @@ CameraAction(page: C8oPageBase, props, vars) : Promise<any> {
             );
         });
     }
-
-}
